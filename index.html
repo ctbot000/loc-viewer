@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LOC Viewer</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='1' y='9' width='3' height='6' fill='%233178c6'/><rect x='6.5' y='4' width='3' height='11' fill='%23f1e05a'/><rect x='12' y='1' width='3' height='14' fill='%23dea584'/></svg>" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>LOC Viewer</h1>
+      <p class="sub">Lines of code per language, counted in your browser. Files never leave your machine.</p>
+    </header>
+
+    <main>
+      <section id="drop" class="drop" tabindex="0">
+        <p><strong>Drop a folder here</strong> or</p>
+        <button id="pick" type="button">Choose folder…</button>
+        <input id="fallback" type="file" webkitdirectory multiple hidden />
+        <div class="options">
+          <label><input id="opt-gitignore" type="checkbox" checked /> Respect .gitignore</label>
+          <label><input id="opt-defaults" type="checkbox" checked /> Skip node_modules, build output, VCS folders</label>
+        </div>
+      </section>
+
+      <section id="progress" hidden>
+        <div class="progress-row">
+          <span id="progress-text">Scanning…</span>
+          <button id="cancel" type="button" class="link">Cancel</button>
+        </div>
+        <div class="bar"><div id="progress-bar"></div></div>
+      </section>
+
+      <section id="results" hidden>
+        <div class="results-head">
+          <h2 id="root-name"></h2>
+          <div class="actions">
+            <button id="export-csv" type="button" class="secondary">Export CSV</button>
+            <button id="export-json" type="button" class="secondary">Export JSON</button>
+          </div>
+        </div>
+
+        <div id="types" class="types" role="group" aria-label="Language types"></div>
+
+        <div class="stats" id="stats"></div>
+        <div class="share" id="share" aria-hidden="true"></div>
+
+        <div class="table-wrap">
+          <table id="table">
+            <thead>
+              <tr>
+                <th data-key="language" class="l">Language</th>
+                <th data-key="files">Files</th>
+                <th data-key="code">Code</th>
+                <th data-key="comment">Comment</th>
+                <th data-key="blank">Blank</th>
+                <th data-key="total">Total</th>
+                <th data-key="code" class="share-col">Share</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+          </table>
+        </div>
+        <p class="note">Click a language to list its files. “—” means comment syntax is unknown, so every non-blank line counts as code. A line holding both code and a comment counts as both.</p>
+
+        <details id="skipped-wrap">
+          <summary id="skipped-summary"></summary>
+          <ul id="skipped"></ul>
+        </details>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

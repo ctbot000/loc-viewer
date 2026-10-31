@@ -1,0 +1,22 @@
+{
+  "name": "loc-viewer",
+  "version": "1.0.0",
+  "description": "Per-language lines of code for a directory, counted in the browser",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "type": "module",
+  "dependencies": {
+    "ignore": "^7.0.14",
+    "linguist-languages": "^9.5.0",
+    "sloc": "^0.3.2"
+  },
+  "devDependencies": {
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  },
+  "private": true
+}
